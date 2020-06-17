@@ -18,7 +18,7 @@ import {startRemoveTicket} from '../../actions/tickets'
     }
 
     handleRemove = (id) => {
-        window.confirm("Are  you sure want to delete")
+        window.confirm("Are  you sure want to delete yes")
               this.props.dispatch(startRemoveTicket(id))
     }
 
