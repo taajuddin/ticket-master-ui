@@ -1,6 +1,6 @@
 import React from 'react'
 
-import TicketForm from './Form'
+import TicketForm from './TicketForm'
 
 import {connect} from 'react-redux'
 import {startAddTicket} from '../../actions/tickets'

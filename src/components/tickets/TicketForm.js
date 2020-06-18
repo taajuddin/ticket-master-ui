@@ -49,7 +49,7 @@ class TicketForm extends React.Component{
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor ="code">Code</label>
-                    <input type="text" id="code" value={this.state.code} onChange={this.handleChange} name="code"/>
+                    <input type="text" id="code" value={this.state.code} onChange={this.handleChange} name="code"/><br />
             
                     <label htmlFor="customer">Customer</label>
                     <select id="customer" value={this.state.customer} onChange={this.handleChange} name="customer">
@@ -57,7 +57,7 @@ class TicketForm extends React.Component{
                         {this.props.customers.map(customer=>{
                              return <option key={customer._id} value={customer._id}>{customer.name} </option>
                         })}
-                    </select>
+                    </select><br/>
             
                     <label htmlFor="department">Department</label>
                     <select
@@ -70,9 +70,10 @@ class TicketForm extends React.Component{
                             return <option  key={department._id} value={department._id}>{department.name}</option>
                         })}
                         </select><br/>
-                <label> Employees </label>
+                <label htmlFor="emoloyee"> Employees </label>
                             <select
                                 name="employee"
+                                id="employee"
                                 placeholder="Select"
                                 value={this.state.employee}
                                 onChange={this.handleChange}>

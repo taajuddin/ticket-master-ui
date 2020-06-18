@@ -14,6 +14,7 @@ import EmployeeEdit from './components/employees/EmployeeEdit'
 import EmployeeShow from './components/employees/EmployeeShow'
 import EmployeeNew from './components/employees/EmployeeNew'
 import TicketList from './components/tickets/TicketList'
+import TicketNew from './components/tickets/TicketNew'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import {startUserLogout} from './actions/userAction'
@@ -60,7 +61,8 @@ import {startUserLogout} from './actions/userAction'
                     <Route path="/employees/new" component={EmployeeNew} />
                     <Route path="/employees/edit/:id" component={EmployeeEdit}/>
                     <Route path="/employees/:id" component={EmployeeShow} />
-                    <Route path="/tickets" component={TicketList} />
+                    <Route path="/tickets" component={TicketList} exact={true} />
+                    <Route path="/tickets/new" component={TicketNew} />
                     <Route path="/users/register" component={Register} />
                     <Route path="/users/login" component={Login} />
                 </Switch>

@@ -11,18 +11,19 @@ import {startRemoveTicket} from '../../actions/tickets'
         return this.props.departments.find(dept => dept._id == id)
     }
     findEmployee=(id)=>{
-        return this.props.employees.find(emp =>emp._id==id)
+        return this.props.employees.find(emp =>emp.employee==id)
     }
     findCustomer = (id) => {
         return this.props.customers.find(cust =>cust._id==id)
     }
 
     handleRemove = (id) => {
-        window.confirm("Are  you sure want to delete yes")
+        window.confirm("Are  you sure want to delete ")
               this.props.dispatch(startRemoveTicket(id))
     }
 
     render() {
+      
         return (
             <div>
                 <h2>Tickets-{this.props.tickets.length}</h2>
@@ -47,9 +48,12 @@ import {startRemoveTicket} from '../../actions/tickets'
                                                     id={ticket._id} 
                                                     index={index}
                                                     code={ticket.code} 
-                                                    customer={ticket.customer.name?ticket.customer.name:this.findCustomer(ticket.customer).name} 
-                                                    department= {ticket.department.name ? ticket.department.name : this.findDepartment(ticket.department).name}
-                                                    employee= {ticket.employee.name ? ticket.employee.name : this.findEmployee(ticket.employee).name} 
+                                                    customer={ticket.customer}
+                                                    department={ticket.department}
+                                                    employees={ticket.employees}
+                                                    // customer={ticket.customer.name? ticket.customer.name : this.findCustomer(ticket.customer).name} 
+                                                    // department={ticket.department.name? ticket.department.name: this.findDepartment(ticket.department).name} 
+                                                    // employees={ticket.employees.name ? ticket.employees.name:this.findEmployee(ticket.employees).name}
                                                     message={ticket.message}
                                                     priority={ticket.priority}
                                                     completed={ticket.completed}
@@ -68,7 +72,7 @@ const mapStateToProps=(state)=>{
     return{
         tickets:state.tickets,
         department:state.departments,
-        employee:state.employees,
+        employees:state.employees,
         customer:state.customers
     }
 }
