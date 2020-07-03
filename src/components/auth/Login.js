@@ -26,31 +26,26 @@ class Login extends Component {
     }
     render() {
         return (
-            <div>
-                <h2>Login</h2>
-                <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="email">email:
-                    <input 
-                        type='text'
-                        name='email'
-                        id='email'
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                        />
-                    </label><br/>
-                    <label htmlFor='password'>password:
-                        <input 
-                            type='password'
-                            name='password'
-                            id='password'
-                            value={this.state.password}
-                            onChange={this.handleChange}
-                        />
-                    </label><br/>
-                        <input
-                            type='submit'
-                            value='login' 
-                        />
+            <div className="justify-content-md-center ">
+                <form className="form-signin" onSubmit={this.handleSubmit}>
+                    
+                    <h1 className="h1 mb-3 font-weight-normal text-center">Login</h1>
+
+                    <label htmlFor="email" className="sr-only">Email</label>
+                    <input type="text" id="email" 
+                        className="form-control mb-3" 
+                        placeholder="Email" 
+                         name="email" onChange={this.handleChange}/>
+
+                    <label htmlFor="password" className="sr-only">Password</label>
+                    <input type="password" 
+                        id="password" 
+                        className="form-control mb-3" 
+                        placeholder="Password"  
+                        name="password" 
+                        onChange={this.handleChange}/>
+
+                    <button className="btn btn-lg btn-primary btn-block" type="submit">Login</button>
                 </form>
             </div>
         )

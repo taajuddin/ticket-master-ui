@@ -1,15 +1,19 @@
 import React from 'react'
-// import axios from '../../config/axios'
+//import axios from '../../config/axios'
 import {Link} from 'react-router-dom'
 
 import {connect} from 'react-redux'
+
 
 class EmployeeShow extends React.Component{
     constructor(props){
         super(props)
         this.state = {
+            tickets: []
         }
     }
+
+    
 
 
     render(){
@@ -30,7 +34,7 @@ class EmployeeShow extends React.Component{
 const mapStateToProps = (state,props) => {
     const id = props.match.params.id
     return {
-        employee: state.employees.find(employee=>employee._id == id)
+        employee: state.employees.find(employee=>employee._id === id)
     }
 }
 

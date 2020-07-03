@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import { Button } from 'reactstrap'
 
 function CustomerItem(props){
     const {index,id,name,email,mobile,handleRemove,text} = props
@@ -9,10 +10,10 @@ function CustomerItem(props){
         <td>{name}</td>
         <td>{email}</td>
         <td>{mobile}</td>
-        <td><Link to={`/customers/${id}`}><button>show</button></Link></td>
-        <td><button onClick={()=>{
+        <td><Link to={`/customers/${id}`}><Button color="info">show</Button></Link></td>
+        <td><Button color="danger" onClick={()=>{
             return handleRemove(id)
-        }}>{text}</button></td>
+        }}>{text}</Button></td>
         </tr>
     )
 }

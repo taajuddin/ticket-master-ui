@@ -1,4 +1,6 @@
 import axios from '../config/axios'
+// import { Alert } from 'reactstrap';
+import swal from 'sweetalert'
 
 export const setUser=(user)=>{
     return {type:'SET_USER',payload:user}
@@ -8,10 +10,10 @@ export const startLoginUser=(formData,redirect)=>{
         axios.post('/users/login',formData)
         .then((response)=>{  
             if(response.data.hasOwnProperty('error')){
-                alert(response.data.error)
+                swal(`${response.data.errors}`,"","error")
             }
             else{
-                alert('successfully logged in')
+                swal("Successfully Logged In!","","success")
                 localStorage.setItem('authToken', response.data.token)
                 axios.get('/users/account',{
                     headers:{
@@ -54,10 +56,10 @@ export const startRegisterUser =(formData,redirect)=>{
         axios.post('/users/register',formData)
         .then((response)=>{
            if(response.data.hasOwnProperty('errors')){
-               alert(response.data.message)
+            swal(`${response.data.message}`,"","error")
            }
            else{
-                alert('you have successfully Registered')
+            swal("Successfully Registered!","", "success")
                 redirect()
            }
         })

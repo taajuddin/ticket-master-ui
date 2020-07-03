@@ -30,7 +30,7 @@ class CustomerShow extends React.Component {
 const mapStateToProps = (state,props) => {
     const id = props.match.params.id
     return {
-        customer: state.customers.find(customer=> customer._id == id)
+        customer: state.customers.find(customer=> customer._id === id)
     }
 }
 

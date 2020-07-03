@@ -1,34 +1,47 @@
-import React, { Component } from 'react'
 
- class DepartmentForm extends Component {
-     constructor(props){
-         super(props)
-         this.state={
-             name:props.department ?props.department.name:''
+import React from 'react'
+import { Button, Form, FormGroup, Label } from 'reactstrap'
 
-         }
-     }
-     handleChange=(e)=>{
-         this.setState({[e.target.name]:e.target.value})
-     }
-     handleSubmit=(e)=>{
-         e.preventDefault()
-         const formData={
-             name:this.state.name
-         }
-        this.props.department &&(formData.id=this.props.department._id)
+
+
+class DepartmentForm extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            name: props.department ? props.department.name : ''
+        }
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleName = this.handleName.bind(this)
+    }
+
+    handleName(e){
+        const name = e.target.value
+        this.setState({name})
+    }
+    handleSubmit(e){
+        e.preventDefault()
+        const formData = {
+            name:this.state.name
+        }
+        this.props.department && (formData.id = this.props.department._id)
         this.props.handleDepartmentSubmit(formData)
         this.setState({name:''})
-     }
-    render() {
+    }
+
+
+    render(){
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
-                    <input type="submit" value="Add" />
-                </form>
+                <Form onSubmit={this.handleSubmit}>
+                    <FormGroup>
+                        <Label htmlFor="text"></Label>
+                        <input type="text" id="text" value={this.state.name} onChange={this.handleName}/>
+                    </FormGroup>
+                    <Button type="submit" value="add">Add</Button>
+                </Form>
             </div>
         )
     }
 }
-export default DepartmentForm
+
+export default DepartmentForm 

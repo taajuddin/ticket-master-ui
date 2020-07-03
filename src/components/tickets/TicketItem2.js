@@ -2,11 +2,10 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import { Button } from 'reactstrap'
 
-function TicketItem(props){
-    console.log('props',props)
-    const {id,code,customer,employees,department,message,priority,handleRemove,text,isResolved,handleClick} = props
+function TicketItem2(props){
+    const {id,code,customer,department,employees,message,priority,handleRemove,text,isResolved,handleClick} = props
     return (
-        !isResolved &&
+        isResolved &&
         <tr>
             <td>{code}</td>
             <td>{customer}</td>
@@ -25,4 +24,4 @@ function TicketItem(props){
     )
 }
 
-export default TicketItem
+export default TicketItem2

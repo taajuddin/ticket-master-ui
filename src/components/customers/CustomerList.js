@@ -1,16 +1,38 @@
+
 import React from 'react'
 import {Link} from 'react-router-dom'
+
 import {connect} from 'react-redux'
+
+import { Table } from 'reactstrap'
+
+import swal from 'sweetalert'
+
 import CustomerItem from './CustomerItem' 
-import {startRemoveCustomer} from '../../actions/customers'
+import {startRemoveCustomer,startSetCustomers} from '../../actions/customers'
 
 class CustomersList extends React.Component {
     
+    componentDidMount(){
+        if(this.props.customers.length===0){
+            this.props.dispatch(startSetCustomers())
+        }
+    }
     handleRemove = (id) => {
-                window.confirm('Are you sure want to delete')
-
-                // alert("successfully deleted")
+        swal({
+            title: "Are you want to Delete?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal("Successfully Deleted", {
+                icon: "success",
+              });
               this.props.dispatch(startRemoveCustomer(id)) 
+            } 
+          })
                 
     }
      
@@ -21,7 +43,7 @@ class CustomersList extends React.Component {
             <div>
                 <h2>Customers - {this.props.customers.length}</h2>
 
-                <table>
+                <Table striped>
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -38,7 +60,7 @@ class CustomersList extends React.Component {
                         })}
                     </tbody>
                 
-                </table>
+                </Table>
 
                 <Link to="customers/new">Add Customer</Link>
             </div>

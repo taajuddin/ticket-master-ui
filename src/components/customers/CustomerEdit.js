@@ -8,8 +8,9 @@ import { startEditCustomer } from '../../actions/customers'
     
     handleCustomerSubmit = (customer) => {
 
-        const redirect = () => this.props.history.push(`/customers/${customer.id}`)
+        const redirect = () => this.props.history.push(`/customers`)
         this.props.dispatch(startEditCustomer(customer,redirect))
+        alert("successfully updated")
     }
     render(){
         return (
@@ -29,7 +30,7 @@ import { startEditCustomer } from '../../actions/customers'
 const mapStateToProps = (state,props) => {
     const id = props.match.params.id
     return {
-        customer: state.customers.find(customer=>customer._id == id)
+        customer: state.customers.find(customer=>customer._id === id)
     }
 }
 

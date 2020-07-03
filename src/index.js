@@ -8,6 +8,7 @@ import {setUser} from './actions/userAction'
 import {startSetCustomers} from './actions/customers'
 import { startSetDepartments } from './actions/departments'
 import {startSetEmployees}   from './actions/employees'
+import {startSetTickets} from './actions/tickets'
 
 const store=configureStore()
 if(localStorage.getItem('authToken')){
@@ -22,6 +23,7 @@ if(localStorage.getItem('authToken')){
             store.dispatch(startSetCustomers())
             store.dispatch(startSetDepartments())
             store.dispatch(startSetEmployees())
+            store.dispatch(startSetTickets())
              
     })             
 }

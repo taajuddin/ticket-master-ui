@@ -46,7 +46,7 @@ class DepartmentShow extends React.Component{
 const mapStateToProps = (state,props) => {
     const id = props.match.params.id
     return {
-        department: state.departments.find(department=>department._id == id)
+        department: state.departments.find(department=>department._id === id)
     }
 }
 

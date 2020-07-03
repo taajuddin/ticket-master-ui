@@ -3,25 +3,43 @@ import {Link} from 'react-router-dom'
 
 import {connect} from 'react-redux'
 
+import { Table } from 'reactstrap'
+
+import swal from 'sweetalert'
 
 import EmployeeItem from './EmployeeItem'
 import {startRemoveEmployee} from '../../actions/employees'
+//import {startSetEmployees} from '../../actions/employees'
 
 
 class EmployeeList extends React.Component {
 
+//   componentDidMount(){
+//     if(this.props.employees.length===0){
+//         this.props.dispatch(startSetEmployees())
+//     }
+// }
+
     handleRemove = (id) => {
-            window.confirm("are you sure want to delete")
+        swal({
+            title: "Are you sure you want to Delete?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal("Successfully Deleted", {
+                icon: "success",
+              });
               this.props.dispatch(startRemoveEmployee(id))
-
             } 
-          
-    
-
-    findDepartment(id) {
-        // console.log(this.props.departments.find(dept => dept._id == id))
-         return this.props.departments.find(dept => dept._id == id)
+          })
     }
+
+    // findDepartment(id) {
+    //      return this.props.departments.find(dept => dept._id == id)
+    // }
        
 
     
@@ -29,7 +47,7 @@ class EmployeeList extends React.Component {
         return(
             <div>
                     <h2>Employees - {this.props.employees.length}</h2>
-                    <table>
+                    <Table striped>
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -50,14 +68,19 @@ class EmployeeList extends React.Component {
                                                         name={employee.name} 
                                                         email={employee.email} 
                                                         mobile={employee.mobile} 
-                                                        department= {employee.department.name ? employee.department.name : this.findDepartment(employee.department).name} 
+                                                        // department= {employee.department.name ? employee.department.name : this.findDepartment(employee.department).name} 
+                                                        department={this.props.department.map(dept => {
+                                                            return(
+                                                              (dept._id === employee.department) && dept.name
+                                                            )
+                                                          })}
                                                         handleRemove = {this.handleRemove} 
                                                         text="remove"/>
                                 })}
 
                    </tbody>
 
-                   </table>
+                   </Table>
                     <Link to="/employees/new">Add Employee</Link>      
             </div>
             )
@@ -67,7 +90,7 @@ class EmployeeList extends React.Component {
 const mapStateToProps = (state) => {
     return {
         employees: state.employees,
-        departments: state.departments
+        department: state.departments
     }
 }
 

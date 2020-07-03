@@ -10,8 +10,9 @@ class DepartmentEdit extends React.Component{
     
     handleDepartmentSubmit = (department) => {
 
-        const redirect = () => this.props.history.push(`/departments/${department.id}`)
+        const redirect = () => this.props.history.push(`/departments`)
         this.props.dispatch(startEditDepartment(department,redirect))
+        alert("successfully updated")
     }
 
 
@@ -33,7 +34,7 @@ class DepartmentEdit extends React.Component{
 const mapStateToProps = (state,props) => {
     const id = props.match.params.id
     return {
-        department: state.departments.find(department => department._id == id)
+        department: state.departments.find(department => department._id === id)
     }
 }
 

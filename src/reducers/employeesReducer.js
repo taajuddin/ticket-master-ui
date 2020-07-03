@@ -3,14 +3,14 @@ const employeesReducer = (state=[],action) => {
         case 'SET_EMPLOYEES': return [].concat(state,action.payload)
 
         case 'REMOVE_EMPLOYEE': return state.filter(employee=>{
-            return employee._id != action.payload._id
+            return employee._id !== action.payload._id
         })
 
         case 'ADD_EMPLOYEE': return [...state,action.payload]
 
         case 'UPDATE_EMPLOYEE_DEPARTMENT': {
             return state.map(employee => {
-                if(employee.department._id == action.payload._id) {
+                if(employee.department._id === action.payload._id) {
                     employee.department = action.payload._id 
                     return {...employee}
                 } else {
@@ -20,7 +20,7 @@ const employeesReducer = (state=[],action) => {
         }
 
         case 'EDIT_EMPLOYEE': return state.map(employee=>{
-                                    if(employee._id == action.payload._id){
+                                    if(employee._id === action.payload._id){
                                             return Object.assign({},employee,action.payload)
                                     } else {
                                     return Object.assign({},employee)

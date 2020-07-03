@@ -9,7 +9,7 @@ class EmployeeEdit extends React.Component{
 
 
     handleEmployeeSubmit = (employee) => {
-        const redirect = () => this.props.history.push(`/employees/${employee.id}`)
+        const redirect = () => this.props.history.push(`/employees/`)
         this.props.dispatch(startEditEmployee(employee,redirect))
     }
 
@@ -32,7 +32,7 @@ class EmployeeEdit extends React.Component{
 const mapStateToProps = (state,props) => {
     const id = props.match.params.id
     return {
-        employee: state.employees.find(employee=> employee._id == id)
+        employee: state.employees.find(employee=> employee._id === id)
     }
 }
 

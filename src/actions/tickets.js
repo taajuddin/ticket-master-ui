@@ -1,5 +1,5 @@
 import axios from '../config/axios'
-
+import swal from 'sweetalert'
 
 export const setTickets = (ticket) => {
     return {
@@ -94,7 +94,7 @@ export const startEditTicket = (ticket,redirect) => {
         .then(response => {
             console.log(response.data)
             if (response.data.errors) {
-              alert(response.data.message)
+                swal(`${response.data.message}`,"","error")
             } else {
                 const ticket = response.data
                 redirect()
@@ -103,4 +103,42 @@ export const startEditTicket = (ticket,redirect) => {
         })
     }
 }
+export const toggleTask = (ticket) => {
+    return {
+        type: 'TOGGLE_TASK',
+        payload: ticket
+    }
+}
 
+export const startToggleTask = (id,isResolved) => {
+    return(dispatch) => {
+        axios.put(`/tickets/${id}`,{isResolved:!isResolved},{
+            headers: {
+                'x-auth': localStorage.getItem('authToken')
+            }
+        })
+            dispatch(toggleTask(id))
+        
+    }
+}
+
+export const searchTicket = (search) => {
+    return {
+        type: 'SEARCH_TICKET',
+        payload: search
+    }
+}
+
+export const updateTicketCustomer = (customer) => {
+    return {
+        type: 'UPDATE_TICKET_CUSTOMER',
+        payload: customer
+    }
+}
+
+export const updateTicketDepartment = (department) => {
+    return {
+        type: 'UPDATE_TICKET_DEPARTMENT',
+        payload: department
+    }
+}
